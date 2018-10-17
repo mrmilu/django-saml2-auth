@@ -142,9 +142,9 @@ def acs(r):
         return HttpResponseRedirect(get_reverse([denied, 'denied', 'django_saml2_auth:denied']))
 
     user_email = user_identity[r.session.get('sso_configuration').attr_user_email][0]
-    user_name = user_identity[r.session.get('sso_configuration').attr_user_username][0]
-    user_first_name = user_identity[r.session.get('sso_configuration').attr_user_firstname][0]
-    user_last_name = user_identity[r.session.get('sso_configuration').attr_user_lastname][0]
+    # user_name = user_identity[r.session.get('sso_configuration').attr_user_username][0]
+    # user_first_name = user_identity[r.session.get('sso_configuration').attr_user_firstname][0]
+    # user_last_name = user_identity[r.session.get('sso_configuration').attr_user_lastname][0]
 
     target_user = None
     is_new_user = False
