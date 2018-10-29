@@ -202,9 +202,13 @@ def signin(r):
 
     r.session['login_next_url'] = next_url
 
-    sso_configuration_id = r.session.get('sso_config', False)
+    sso_configuration_id = r.GET.get('sso_id', False)
 
-    sso_configuration = SSOConfiguration.objects.get(id=sso_configuration_id)
+    if sso_configuration_id:
+        sso_configuration = SSOConfiguration.objects.get(id=int(sso_configuration_id))
+    else:
+        return HttpResponseRedirect(get_reverse([denied, 'denied', 'django_saml2_auth:denied']))
+
     r.session['sso_configuration'] = sso_configuration
 
     saml_client = _get_saml_client(get_current_domain(r), r.session.get('sso_configuration'))
